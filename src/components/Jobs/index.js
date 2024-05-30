@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import Cookies from 'js-cookie'
 import './index.css'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
@@ -23,20 +24,29 @@ class Jobs extends Component {
   }
 
   getProfile = async () => {
+    const jwtToken = Cookies.get('jwt_token')
     this.setState({profileStatus: apiConstants.in_progress})
     const url = 'https://apis.ccbp.in/profile'
     const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
       method: 'GET',
     }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
-    if (response.ok === true) {
-      this.setState({
-        profileData: data.profile_details,
-        profileStatus: apiConstants.success,
-      })
-    } else {
+    try {
+      const response = await fetch(url, options)
+      const data = await response.json()
+      console.log(data)
+      if (response.ok) {
+        this.setState({
+          profileData: data.profile_details,
+          profileStatus: apiConstants.success,
+        })
+      } else {
+        this.setState({profileStatus: apiConstants.failure})
+      }
+    } catch (error) {
+      console.error('Error fetching profile data:', error)
       this.setState({profileStatus: apiConstants.failure})
     }
   }
@@ -51,20 +61,22 @@ class Jobs extends Component {
     const {profileData} = this.state
     return (
       <div className="profile-bg-container">
-        <img src={profileData.profile_image_url} alt="profile_image" />
-        <h1>{profileData.name}</h1>
-        <p>{profileData.short_bio}</p>
+        <div className="profile-bg">
+          <img
+            src={profileData.profile_image_url}
+            alt="profile_image"
+            className="profile-img"
+          />
+          <h1 className="profile-name">{profileData.name}</h1>
+          <p className="profile-bio">{profileData.short_bio}</p>
+        </div>
       </div>
     )
   }
 
   failureView = () => (
     <div>
-      <button
-        type="button"
-        className="retry-button"
-        onClick={this.getProfile()}
-      >
+      <button type="button" className="retry-button" onClick={this.getProfile}>
         Retry
       </button>
     </div>
