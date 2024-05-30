@@ -13,9 +13,10 @@ const JobCard = props => {
     packagePerAnnum,
     rating,
     title,
+    id,
   } = job
   return (
-    <Link to="/jobs" className="link-ele">
+    <Link to={`/jobs/${id}`} className="link-ele">
       <li className="job-card-bg-container">
         <div className="job-card-top-container">
           <img
@@ -25,19 +26,23 @@ const JobCard = props => {
           />
           <div>
             <h1 className="job-details-title">{title}</h1>
-            <FaRegStar className="star" />
-            {rating}
+            <div className="rating-container">
+              <FaRegStar className="star" />
+              <p>{rating}</p>
+            </div>
           </div>
         </div>
         <div className="job-second-container">
           <div className="job-card-top-container">
             <div className="job-second-container">
-              <IoLocation className="logo" />
-              {location}
+              <div className="rating-container">
+                <IoLocation className="logo" />
+                <p>{location}</p>
+              </div>
             </div>
-            <div>
+            <div className="rating-container">
               <FaSuitcase className="logo" />
-              {employmentType}
+              <p>{employmentType}</p>
             </div>
           </div>
           <p>{packagePerAnnum}</p>

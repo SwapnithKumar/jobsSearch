@@ -11,7 +11,7 @@ const Header = props => {
   }
 
   return (
-    <div className="header-bg-container">
+    <ul className="header-bg-container">
       <Link to="/">
         <img
           src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
@@ -21,20 +21,26 @@ const Header = props => {
       </Link>
       <div className="header-flex">
         <Link to="/">
-          <button type="button" className="header-fonts">
-            Home
-          </button>
+          <li>
+            <button type="button" className="header-fonts">
+              Home
+            </button>
+          </li>
         </Link>
         <Link to="/jobs">
-          <button type="button" className="header-fonts">
-            Jobs
-          </button>
+          <li>
+            <button type="button" className="header-fonts">
+              Jobs
+            </button>
+          </li>
         </Link>
       </div>
-      <button type="button" className="logout-button" onClick={userLogout}>
-        Logout
-      </button>
-    </div>
+      <li>
+        <button type="button" className="logout-button" onClick={userLogout}>
+          Logout
+        </button>
+      </li>
+    </ul>
   )
 }
 

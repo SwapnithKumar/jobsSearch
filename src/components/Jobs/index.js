@@ -191,7 +191,8 @@ class Jobs extends Component {
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
         alt="failure view"
       />
-      <p>We cannot seem find the page you are looking for</p>
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We cannot seem to find the page you are looking for</p>
       <button type="button" className="retry-button" onClick={this.getJobs}>
         Retry
       </button>
@@ -201,11 +202,25 @@ class Jobs extends Component {
   jobSuccessView = () => {
     const {jobsData} = this.state
     return (
-      <ul>
-        {jobsData.map(eachItem => (
-          <JobCard job={eachItem} key={eachItem.id} />
-        ))}
-      </ul>
+      <div>
+        {' '}
+        {jobsData.length === 0 ? (
+          <div>
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+              alt="no jobs"
+            />
+            <h1>No Jobs Found</h1>
+            <p>We could not find any jobs. Try other filters</p>
+          </div>
+        ) : (
+          <ul>
+            {jobsData.map(eachItem => (
+              <JobCard job={eachItem} key={eachItem.id} />
+            ))}
+          </ul>
+        )}
+      </div>
     )
   }
 
@@ -249,10 +264,11 @@ class Jobs extends Component {
           <li className="sorting-types" key={eachItem.employmentTypeId}>
             <input
               type="checkbox"
+              id={eachItem.employmentTypeId}
               value={eachItem.employmentTypeId}
-              onChange={this.addEmploymentTypes}
+              onChange={this.handleCheckboxChange}
             />
-            <p>{eachItem.label}</p>
+            <label htmlFor={eachItem.employmentTypeId}>{eachItem.label}</label>
           </li>
         ))}
       </ul>
@@ -265,16 +281,17 @@ class Jobs extends Component {
 
   salaryRange = () => (
     <div>
-      <h3>Salry Range</h3>
+      <h3>Salary Range</h3>
       <ul>
         {salaryRangesList.map(eachItem => (
           <li className="sorting-types" key={eachItem.salaryRangeId}>
             <input
               type="radio"
               value={eachItem.salaryRangeId}
+              id={eachItem.salaryRangeId}
               onChange={this.changeSalaray}
             />
-            <p>{eachItem.label}</p>
+            <label htmlFor={eachItem.salaryRangeId}>{eachItem.label}</label>
           </li>
         ))}
       </ul>

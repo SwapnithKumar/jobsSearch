@@ -1,14 +1,9 @@
 import {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import Header from '../Header'
 import './index.css'
 
 class Home extends Component {
-  navigateToFindJobs = () => {
-    const {history} = this.props
-    history.replace('/jobs')
-  }
-
   render() {
     return (
       <div>
@@ -21,13 +16,11 @@ class Home extends Component {
               company reviews. Find the job that fits your abilities and
               potential
             </p>
-            <button
-              type="button"
-              className="find-jobs-button"
-              onClick={this.navigateToFindJobs}
-            >
-              Find Jobs
-            </button>
+            <Link to="/jobs">
+              <button type="button" className="find-jobs-button">
+                Find Jobs
+              </button>
+            </Link>
           </div>
         </div>
       </div>

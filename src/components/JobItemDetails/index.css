@@ -1,0 +1,62 @@
+.job-item-details-bg-container {
+  background-color: black;
+  padding: 22px;
+  min-height: 90vh;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-item-details-container {
+  background-color: #525353;
+  border-radius: 12px;
+  padding: 12px;
+  width: 90vw;
+  margin: 0px;
+  margin-bottom: 12px;
+  list-style-type: none;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skills {
+  display: flex;
+  margin-right: 100px;
+  margin-bottom: 20px;
+}
+
+.skills-img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.similar-jobs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.similar-job-card {
+  width: 28vw;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  list-style-type: none;
+  background-color: #525353;
+  border-radius: 12px;
+  padding: 12px;
+}
